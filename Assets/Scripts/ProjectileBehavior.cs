@@ -7,6 +7,7 @@ public class ProjectileBehavior : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody projectileRB;
     private float maxDistance = 1000;
+    public AudioClip spawnSound;
     void Start()
     {        
         projectileRB = GetComponent<Rigidbody>();
@@ -25,7 +26,6 @@ public class ProjectileBehavior : MonoBehaviour
         {
             Rigidbody projectileRB = GetComponent<Rigidbody>();
             resetBullet();
-
         }
         
     }

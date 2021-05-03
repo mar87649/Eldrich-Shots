@@ -11,9 +11,14 @@ public class BulletSpawner : MonoBehaviour
     public float arc = 300;
     public int poolingAmount=20;
     public List<GameObject> pooledObjects;
+    private AudioSource audioSource;
+    public AudioClip bulletSpawnFX;
+
+
     void Start()
     {
         player = GameObject.Find("Player");
+        audioSource = GetComponent<AudioSource>(); 
         PoolingSetup();
     }
 
@@ -22,18 +27,16 @@ public class BulletSpawner : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+        audioSource.PlayOneShot(bulletSpawnFX);
         bullet = GetInactivePooledObject();
         if (bullet  !=null)
             {
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
-            Vector3 absZForward = new Vector3(player.transform.forward.x, player.transform.forward.y, player.transform.forward.z);
-            bullet.SetActive(true);            
-            bullet.GetComponent<Rigidbody>().AddForce(absZForward*speed);
-            }
-            // bullet   = Instantiate(bullet, transform.position, transform.rotation);
-            // Vector3 absZForward = new Vector3(player.transform.forward.x, player.transform.forward.y, player.transform.forward.z);
-            // bullet.GetComponent<Rigidbody>().AddForce(absZForward*speed);
+            Vector3 absZForward = new Vector3(player.transform.forward.x*speed, player.transform.forward.y+arc, player.transform.forward.z*speed);
+            bullet.SetActive(true);               
+            bullet.GetComponent<Rigidbody>().AddForce(absZForward);            
+            }            
         }                             
     }
 

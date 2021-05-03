@@ -9,14 +9,18 @@ public class Counter : MonoBehaviour
     public Text CounterText;
 
     private int Count = 0;
+    private AudioSource audioSource;
+    public AudioClip scoreSound;
 
     private void Start()
     {
         Count = 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        audioSource.PlayOneShot(scoreSound);
         Count += 1;
         CounterText.text = "Count : " + Count;
     }
