@@ -8,7 +8,7 @@ public class Counter : MonoBehaviour
 {
     public Text CounterText;
 
-    private int Count = 0;
+    public int Count = 0;
     private AudioSource audioSource;
     public AudioClip scoreSound;
 
@@ -22,6 +22,6 @@ public class Counter : MonoBehaviour
     {
         audioSource.PlayOneShot(scoreSound);
         Count += 1;
-        CounterText.text = "Count : " + Count;
+        CounterText.text = "Score : " + Count;
     }
 }
